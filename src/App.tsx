@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Title from "./components/Title";
+import styles from "./App.module.css";
+import UploadBlock from "./components/UploadBlock";
+import useUpload from "./hooks/useUpload";
+import ListContainer from "./components/ListContainer";
 
-function App() {
+export default function App() {
+  const {
+    files,
+    handleAddFiles,
+    handleCancel,
+    handleUploadFiles,
+    handleRetry,
+    progress,
+    isSomethingAdded,
+    status,
+  } = useUpload();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <Title title={"Mock App"} />
+      <UploadBlock
+        handleAddFiles={handleAddFiles}
+        handleUploadFiles={handleUploadFiles}
+        isSomethingAdded={isSomethingAdded}
+      />
+      <ListContainer
+        files={files}
+        progress={progress}
+        handleCancel={handleCancel}
+        handleRetry={handleRetry}
+        status={status}
+      />
     </div>
   );
 }
-
-export default App;

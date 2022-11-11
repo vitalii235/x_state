@@ -1,0 +1,16 @@
+.container {
+    height: 250px;
+    width: 150px;
+    border-radius: 10px;
+    border: solid 1px cornflowerblue;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 10px;
+}
+.titleContainer {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
