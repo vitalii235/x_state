@@ -8,7 +8,6 @@ const useUpload = () => {
   const files = store.context.files;
   const progress = store.context.progress;
   const status = store.context.status;
-
   const isSomethingAdded = !!files.length;
 
   const handleRetry = React.useCallback(

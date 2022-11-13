@@ -6,7 +6,8 @@ import {
   Statuses,
 } from "store/uploadMachine/uploadMachine.types";
 import If from "../If";
-import Button from "../Button";
+import CardStatusTextBlock from "../CardStatusTextBlock";
+import CardButtonsBlock from "../CardButtonsBlock";
 
 type Props = {
   name: string;
@@ -25,9 +26,7 @@ const Card: FC<Props> = ({
   uuid,
   status,
 }) => {
-  const isCancelShown =
-    typeof progress === "number" && progress > 0 && progress < 100;
-  const isRetryShown = progress === "error";
+  const isProgressShown = typeof progress === "number" && progress < 100;
   const onCancel = () => {
     handleCancel(uuid);
   };
@@ -40,20 +39,16 @@ const Card: FC<Props> = ({
         <span title={name}>{name}</span>
       </div>
       <div>
-        <If condition={!!progress}>
+        <CardStatusTextBlock progress={progress} />
+        <If condition={isProgressShown}>
           <ProgressBar progress={progress || 0} />
         </If>
-        <If condition={isCancelShown}>
-          <Button title={"Cancel"} styleType={"cancel"} onClick={onCancel} />
-        </If>
-        <If condition={isRetryShown}>
-          <Button
-            title={"Retry"}
-            styleType={"error"}
-            onClick={onRetry}
-            disabled={status !== Statuses.READY}
-          />
-        </If>
+        <CardButtonsBlock
+          progress={progress}
+          status={status}
+          onCancel={onCancel}
+          onRetry={onRetry}
+        />
       </div>
     </div>
   );

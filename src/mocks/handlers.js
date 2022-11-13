@@ -32,7 +32,7 @@ export const handlers = [
     const { uuid = "", key = "" } =
       beService.generateObjectFromQuery(searchParams);
     const copy = { ...DB[key] };
-    delete copy[uuid];
+    copy[uuid] = "cancel";
     DB[key] = copy;
     clearInterval(ACTIVE_CONNECTIONS?.[uuid] || "");
     delete ACTIVE_CONNECTIONS[uuid];

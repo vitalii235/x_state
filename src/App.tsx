@@ -16,7 +16,6 @@ export default function App() {
     isSomethingAdded,
     status,
   } = useUpload();
-
   return (
     <div className={styles.app}>
       <Title title={"Mock App"} />

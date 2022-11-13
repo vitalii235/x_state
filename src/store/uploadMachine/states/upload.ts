@@ -22,7 +22,6 @@ const upload: StateConfig = {
     },
     [UploadActionsData.RETRY_UPLOAD_FILE]: {
       target: "retryUploadFile",
-      cond: "enableRetry",
       actions: assign({
         status: (_) => Statuses.PROCESSING,
         errorFileUuid: (_, { uuid }) => uuid,

@@ -34,11 +34,6 @@ const uploadMachine = createMachine<FilesListContext, Action>(
       enableAddFiles: ({ status }) => status === Statuses.READY,
       enableUpload: ({ status, files }) =>
         status === Statuses.READY && !!files.length,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      enableRetry: ({ progress }, { uuid }) => {
-        return progress[uuid] === "error";
-      },
     },
   }
 );

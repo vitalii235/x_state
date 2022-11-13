@@ -20,7 +20,8 @@ class BEService {
   handleUploadFile = (file, key, uuid) => {
     const interval = setInterval(() => {
       const data = { ...(DB[key] || {}) };
-      const uploadedPercents = data[uuid] === "error" ? 0 : data[uuid] || 0;
+      const uploadedPercents =
+        data[uuid] === "error" || data[uuid] === "cancel" ? 0 : data[uuid] || 0;
       data[uuid] = uploadedPercents + (this.SIZE_PER_SECOND / file.size) * 100;
       DB[key] = { ...data };
       if (data[uuid] >= 100 || data[uuid] === "error") {
